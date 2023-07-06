@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:00:09 by hania             #+#    #+#             */
-/*   Updated: 2023/07/04 16:16:37 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:38:51 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ void	free_scene(t_scene *input)
 {
 	int	i;
 
-	i = 0;
-	while (i < 4)
+	i = 3;
+	while (i >= 0)
 	{
 		if (input->textures[i] != NULL)
 		{
 			free(input->textures[i]);
 			input->textures[i] = NULL;
 		}
-		i++;
+		i--;
 	}
-	i = find_height(input->map);
+	i = find_height(input->map) + 1;
 	if (input && input->map && input->map[i])
 	{
-		while (input->map[i])
+		while (i >= 0 && input->map[i])
 		{
 			free(input->map[i]);
 			i--;

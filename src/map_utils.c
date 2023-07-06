@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:25:49 by hania             #+#    #+#             */
-/*   Updated: 2023/07/04 10:16:23 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:34:10 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ size_t	find_height(char **raw)
 	i = 0;
 	while (raw && raw[i])
 		i++;
-	if (!is_empty(raw[i - 1]))
+	if (i > 0 && !is_empty(raw[i - 1]))
 		return (i);
-	while (raw[i - 1])
+	while (i > 0 && raw[i - 1])
 	{
 		if (is_empty(raw[i - 1]))
 			i--;

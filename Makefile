@@ -17,7 +17,7 @@ DIR_SRC			= src/
 LIBFT			= $(DIR_LIBFT)libft.a
 MLX				= $(DIR_MLX)libmlx.a
 
-SRC				= main2.c \
+SRC				= main.c \
 				  game.c \
 				  player_init.c \
 				  display_frame.c \

@@ -16,10 +16,10 @@ echo -e "${RED}--> Incorrect extension${RESET}"
 ./cub3D srcs/main.c
 
 echo -e "${RED}--> Inexistent file${RESET}"
-./cub3D blabla.cub
+./cub3D --leak-check=full --show-leak-kinds=all blabla.cub
 
 echo -e "${RED}--> Directory with .cub ending${RESET}"
-mkdir "test.cub" ; ./cub3D "test.cub" ; rm -rf "test.cub"
+mkdir "test.cub" ; ./cub3D --leak-check=full --show-leak-kinds=all "test.cub" ; rm -rf "test.cub"
 
 echo -e "${PURPLE} ---------------------------------------------------------------${RESET}"
 echo -e "${PURPLE}                    TESTING TYPE IDENTIFIERS${RESET}"
