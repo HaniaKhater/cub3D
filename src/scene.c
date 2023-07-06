@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:00:09 by hania             #+#    #+#             */
-/*   Updated: 2023/07/06 22:38:51 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 00:29:54 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ void	free_scene(t_scene *input)
 		i--;
 	}
 	i = find_height(input->map) + 1;
-	if (input && input->map && input->map[i])
+	if (input->map != NULL && i >= 0)
 	{
-		while (i >= 0 && input->map[i])
+		while (i >= 0)
 		{
 			free(input->map[i]);
+			input->map[i] = NULL;
 			i--;
 		}
 		free(input->map);
+		input->map = NULL;
 	}
-	if (input)
-		free(input);
+	free(input);
 }
 
 void	print_scene(t_scene *input)
@@ -99,26 +100,4 @@ void	free_str_arr(char **arr)
 	if (arr)
 		free(arr);
 	return ;
-}
-
-void	t_scene_free(t_scene scene)
-{
-	int	i;
-
-	i = 3;
-	if (scene.textures)
-	{
-		while (scene.textures[i] && i >= 0)
-			free(scene.textures[i--]);
-	}
-	if (scene.map != NULL)
-	{
-		i = 0;
-		while (scene.map[i] != NULL)
-		{
-			free(scene.map[i]);
-			i++;
-		}
-		free(scene.map);
-	}
 }

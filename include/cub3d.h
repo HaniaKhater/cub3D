@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:18:20 by hania             #+#    #+#             */
-/*   Updated: 2023/07/06 22:05:54 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/06 23:53:50 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ unsigned int	get_color_value(char *line);
 bool			surrounded_walls(char **map);
 
 // GAME.C 
-int				game_init(t_game *game, char *path);
+int				game_init(t_game *game, t_scene *input);
 void			game_free(t_game game);
 
 // IMG_FILL_DISPLAY.C
