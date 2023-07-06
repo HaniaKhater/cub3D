@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:14:21 by hania             #+#    #+#             */
-/*   Updated: 2023/07/04 11:51:54 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 01:34:14 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,17 @@ bool	valid_map(const char *path, t_scene *input)
 	while (input->map[i])
 	{
 		if (!only_map_char(input->map[i]))
+		{
+			ft_putstr_fd("Error\nThe map contains an invalid character\n", 2);
 			return (false);
+		}
 		player += player_nb(input->map[i]);
 		i++;
 	}
 	if (player != 1)
+	{
+		ft_putstr_fd("Error\nThe map needs one player\n", 2);
 		return (false);
+	}
 	return (true);
 }

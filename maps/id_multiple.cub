@@ -1,11 +1,11 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-
-
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-
-EA ./path_new_east
+NO textures/greystone.xpm
+SO textures/mossy.xpm
+WE textures/bluestone.xpm
+EA textures/purplestone.xpm
+NO textures/greystone.xpm
+SO textures/mossy.xpm
+WE textures/bluestone.xpm
+EA textures/purplestone.xpm
 F 220,100,0
 
 C 225,30,0

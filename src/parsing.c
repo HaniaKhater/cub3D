@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:26:27 by hania             #+#    #+#             */
-/*   Updated: 2023/07/04 12:33:10 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 01:52:19 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ bool	is_readable(const char *path)
 bool	parse(char *path, t_scene *input)
 {
 	if (!is_readable(path))
+	{
+		ft_putstr_fd("Error\nThe cub map file is not readable\n", 2);
 		return (false);
+	}
 	if (!valid_identifiers(path, input))
 		return (false);
 	if (!valid_map(path, input))
@@ -38,6 +41,9 @@ bool	parse(char *path, t_scene *input)
 	adapt_map(input);
 	adapt_map(input);
 	if (!surrounded_walls(input->map))
+	{
+		ft_putstr_fd("Error\nThe map is not surrounded by walls\n", 2);
 		return (false);
+	}
 	return (true);
 }

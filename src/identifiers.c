@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 22:14:36 by hania             #+#    #+#             */
-/*   Updated: 2023/07/04 12:46:22 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 01:48:29 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	save_identifiers(char **ids, t_scene *input)
 		{
 			input->textures[type] = crop_id_value(ids[i]);
 			if (!is_readable(input->textures[type]))
-				return (false);
+				return (ft_putstr_fd("Error\nTexture is not readable\n", 2), 0);
 		}
 		else if (type == 4)
 			input->floor_color = get_color_value(ids[i]);
@@ -103,7 +103,10 @@ bool	save_identifiers(char **ids, t_scene *input)
 		i++;
 	}
 	if (input->ceiling_color == 17000000 || input->floor_color == 17000000)
+	{
+		ft_putstr_fd("Error\nThe floor and/or ceiling color is invalid\n", 2);
 		return (false);
+	}
 	return (true);
 }
 
@@ -119,10 +122,18 @@ bool	valid_identifiers(const char *path, t_scene *input)
 	while (ids[i] && i < 6)
 	{
 		if (!id_count_valid(ids[i]))
+		{
+			ft_putstr_fd("Error\nAn identifier is wrong\n", 2);
 			return (free_str_arr(ids), false);
+		}
 		i++;
 	}
-	if (!id_count_valid(NULL) || !save_identifiers(ids, input))
+	if (!id_count_valid(NULL))
+	{
+		ft_putstr_fd("Error\nThe identifiers are invalid\n", 2);
+		return (free_str_arr(ids), false);
+	}
+	if (!save_identifiers(ids, input))
 		return (free_str_arr(ids), false);
 	return (free_str_arr(ids), true);
 }

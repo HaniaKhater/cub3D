@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:08:52 by hania             #+#    #+#             */
-/*   Updated: 2023/07/07 00:35:21 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 01:25:01 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2 || ft_strcmp(av[1] + ft_strlen(av[1]) - 4, ".cub"))
-		return (ft_printf("Error\nMissing map. Try ./cub3d maps/map.cub\n"), 1);
+	{
+		ft_putstr_fd("Error\nMissing a valid map. Try ./cub3d maps/map.cub\n", 2);
+		return (1);
+	}
 	input = init_scene();
 	if (!parse(av[1], input))
-		return (free_scene(input), ft_printf("Error\nIncorrect input\n"), 1);
-	print_scene(input);
+		return (free_scene(input), 1);
 	if (game_init(&game, input) == 0)
 		return (1);
 	if (t_mlx_is_valid(game.mlx) == 0)
