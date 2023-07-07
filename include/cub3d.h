@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:18:20 by hania             #+#    #+#             */
-/*   Updated: 2023/07/07 00:36:59 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 04:41:48 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ int				t_img_init_file(void *mlx_ptr, t_img *img, char *file);
 // T_MLX.C
 int				t_mlx_is_valid(t_mlx *mlx);
 t_mlx			*t_mlx_init(char *files[4]);
-
-//int		t_mlx_textures_init(t_mlx *mlx);
 void			t_mlx_free(t_mlx *mlx);
 
 // HOOKS.C

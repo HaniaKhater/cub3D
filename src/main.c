@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:08:52 by hania             #+#    #+#             */
-/*   Updated: 2023/07/07 01:25:01 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/07 04:54:40 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int ac, char **av)
 	if (!parse(av[1], input))
 		return (free_scene(input), 1);
 	if (game_init(&game, input) == 0)
-		return (1);
+		return (ft_putstr_fd("Error\nmlx failed\n", 2), free_scene(input), 1);
 	if (t_mlx_is_valid(game.mlx) == 0)
-		return (1);
+		return (ft_putstr_fd("Error\nmlx failed\n", 2), free_scene(input), 1);
 	mlx_hook(game.mlx->win_ptr, 2, 1L << 0, &key_down_hook, &game);
 	mlx_hook(game.mlx->win_ptr, 3, 1L << 1, &key_up_hook, &game);
 	mlx_hook(game.mlx->win_ptr, 17, 0, &close_window, game.mlx);
