@@ -37,7 +37,7 @@ SRC				= main.c \
 				  map.c \
 				  map_utils.c \
 				  rgb.c \
-				  scene.c \
+				  t_scene.c \
 				  walls.c \
 
 OBJ				= $(addprefix $(DIR_OBJ), $(SRC:.c=.o))

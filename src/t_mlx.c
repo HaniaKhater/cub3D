@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 12:40:54 by rchan--r          #+#    #+#             */
-/*   Updated: 2023/07/04 15:37:03 by hkhater          ###   ########.fr       */
+/*   Created: 2023/07/08 21:15:07 by hkhater           #+#    #+#             */
+/*   Updated: 2023/07/08 21:36:50 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	t_img_free(t_img *img)
 
 static int	t_mlx_textures_init(t_mlx *mlx, char *files[4])
 {
-	static int	index[4] = {NO, SO, EA, WE};
 	int			i;
 
 	if (t_mlx_is_valid(mlx) == 0)
@@ -47,7 +46,7 @@ static int	t_mlx_textures_init(t_mlx *mlx, char *files[4])
 	while (i < 4)
 	{
 		if (t_img_init_file(mlx->mlx_ptr, mlx->textures + i,
-				files[index[i]]) == 0)
+				files[i]) == 0)
 			return (0);
 		i++;
 	}

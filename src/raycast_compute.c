@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:05:10 by rchan--r          #+#    #+#             */
-/*   Updated: 2023/07/06 22:10:11 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/08 22:35:49 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ static void	raycast_get_texture(t_game *game, t_raycast *raycast)
 	if (raycast->side == 0)
 	{
 		if (raycast->ray_dir_x > 0)
-			raycast->texture = &(game->mlx->textures[NO]);
+			raycast->texture = &(game->mlx->textures[WE]);
 		else
-			raycast->texture = &(game->mlx->textures[SO]);
+			raycast->texture = &(game->mlx->textures[EA]);
 	}
 	else
 	{
 		if (raycast->ray_dir_y > 0)
-			raycast->texture = &(game->mlx->textures[EA]);
+			raycast->texture = &(game->mlx->textures[SO]);
 		else
-			raycast->texture = &(game->mlx->textures[WE]);
+			raycast->texture = &(game->mlx->textures[NO]);
 	}
 }
 

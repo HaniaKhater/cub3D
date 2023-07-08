@@ -1,9 +1,9 @@
-NO textures/EG3.xpm
-SO textures/EG4.xpm
-WE textures/EG2.xpm
-EA textures/EG1.xpm
+NO textures/EG1.xpm
+SO textures/EG2.xpm
+WE textures/EG3.xpm
+EA textures/EG4.xpm
 
- F  246, 215, 176
+F  246, 215, 176
 C 135,206,235
 
                111
@@ -13,8 +13,9 @@ C 135,206,235
              1000001
             110000011   
             100000001          
-           11000011111        
-          11000000000111   
+           110000011111   
+          11000000000011   
+          10000000000001   
          1100000001000011   
         110000W000100000111
        110000000001100000011

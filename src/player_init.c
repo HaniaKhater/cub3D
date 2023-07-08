@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:18:05 by rchan--r          #+#    #+#             */
-/*   Updated: 2023/07/04 16:22:36 by rchan--r         ###   ########.fr       */
+/*   Updated: 2023/07/08 21:49:20 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ static void	player_fill(t_player *player, int i, int j, char c)
 	player->pos_y = j + 0.5;
 	if (c == 'N')
 	{
-		player_fill_dir(player, 0.0, -1.0);
-		player_fill_plane(player, 0.66, 0.0);
+		player_fill_dir(player, 0.01, -0.99);
+		player_fill_plane(player, 0.66, 0.01);
 	}
 	else if (c == 'S')
 	{
-		player_fill_dir(player, 0.0, 1.0);
-		player_fill_plane(player, -0.66, 0.0);
-	}
-	else if (c == 'E')
-	{
-		player_fill_dir(player, 1.0, 0.0);
-		player_fill_plane(player, 0.0, 0.66);
+		player_fill_dir(player, 0.01, 0.99);
+		player_fill_plane(player, -0.66, 0.01);
 	}
 	else if (c == 'W')
 	{
-		player_fill_dir(player, -1.0, 0.0);
-		player_fill_plane(player, 0.0, -0.66);
+		player_fill_dir(player, 0.99, 0.01);
+		player_fill_plane(player, 0.01, 0.66);
+	}
+	else if (c == 'E')
+	{
+		player_fill_dir(player, -0.99, 0.01);
+		player_fill_plane(player, 0.01, -0.66);
 	}
 }
 
