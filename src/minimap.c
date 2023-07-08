@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 16:19:41 by hkhater           #+#    #+#             */
-/*   Updated: 2023/07/04 16:20:18 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/08 20:49:51 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	minimap_get_dimensions(t_game *g, int *w, int *height, int *nb_pixels)
 	}
 	if (*w >= *height)
 	{
-		dim_screen = 0.1 * WIDTH;
+		dim_screen = 0.2 * WIDTH;
 		*nb_pixels = dim_screen / *w;
 	}
 	else
 	{
-		dim_screen = 0.1 * HEIGHT;
+		dim_screen = 0.2 * HEIGHT;
 		*nb_pixels = dim_screen / *height;
 	}
 	*height *= *nb_pixels;
@@ -46,11 +46,11 @@ void	minimap_fill_pixel(t_game *game, int nb_p, int x, int y)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < nb_p)
+	i = 10;
+	while (i < nb_p + 10)
 	{
-		j = 0;
-		while (j < nb_p)
+		j = 10;
+		while (j < nb_p + 10)
 		{
 			if (game->scene.map[x][y] == '0')
 				img_fill_pixel(game->mlx->frame, nb_p * x + i,

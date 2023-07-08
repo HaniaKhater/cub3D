@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:46:26 by rchan--r          #+#    #+#             */
-/*   Updated: 2023/07/04 16:19:53 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/08 20:53:33 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ static void	minimap_update_player_position(t_game *game, int nb_pixels)
 
 	x = game->player.pos_x;
 	y = game->player.pos_y;
-	i = 0;
-	while (i < nb_pixels)
+	i = 10;
+	while (i < nb_pixels + 10)
 	{
-		j = 0;
-		while (j < nb_pixels)
+		j = 10;
+		while (j < nb_pixels + 10)
 		{
 			img_fill_pixel(game->mlx->frame, nb_pixels * x + i,
 				nb_pixels * y + j, RED);
