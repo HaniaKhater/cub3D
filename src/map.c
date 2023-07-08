@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:14:21 by hania             #+#    #+#             */
-/*   Updated: 2023/07/07 01:34:14 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/09 00:19:47 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	**read_map(char *path)
 	}
 	while (line && is_empty(line))
 		line = read_line(&i[1], line, fd);
-	map = ft_calloc(count_lines(path) - (i[0] + i[1] - 2), sizeof(char *));
+	map = ft_calloc(count_lines(path) - i[0] + 1, sizeof(char *));
 	while (line && map)
 	{
 		map[i[2]] = ft_strdup(line);
@@ -51,10 +51,10 @@ static bool	only_map_char(char *s)
 {
 	if (!s)
 		return (false);
-	while (*s)
+	while (s && *s)
 	{
-		if (*s != ' ' && *s != '\n' && *s != '1' && *s != '0' && *s != 'N'
-			&& *s != 'E' && *s != 'S' && *s != 'W')
+		if (*s != '\n' && *s != '1' && *s != '0' && *s != 'N'
+			&& *s != 'E' && *s != 'S' && *s != 'W' && !is_space(*s)) // or just space
 			return (false);
 		s++;
 	}
