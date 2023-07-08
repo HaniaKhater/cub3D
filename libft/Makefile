@@ -35,8 +35,7 @@ SRC_BONUS	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 			  ft_lstiter.c ft_lstmap.c \
 			  ft_lst_to_tab.c ft_lstdel_node.c ft_lstfree_cmp.c
 
-SRC_EXTRA	= get_next_line.c get_next_line_utils.c \
-			  ft_printf.c len.c print.c format.c format2.c \
+SRC_EXTRA	= ft_printf.c len.c print.c format.c format2.c \
 			  ft_printf_fd.c print_fd.c format_fd.c format2_fd.c \
 			  tab_append.c tab_init.c tab_fill.c tab_free.c tab_print.c\
 			  ft_isspace.c ft_str_isspace.c\
@@ -44,15 +43,10 @@ SRC_EXTRA	= get_next_line.c get_next_line_utils.c \
 			  ft_min.c ft_max.c \
 			  ft_strjoin_sep.c ft_strcmp.c
 
-SRC_UTILS	= lst_strcmp.c lst_print_str.c lst_no_free.c
-#OBJS		= ${SRCS:.c=.o}
-
-#OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
-
 all:		${NAME} 
 	
-#.c.o:		
-#			gcc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
+.c.o:		
+			gcc -Wall -Wextra -Werror -c $< -o ${<:.c=.o}
 
 $(DIR_OBJ):
 				mkdir $@
@@ -64,13 +58,9 @@ $(DIR_OBJ)%.o:	$(DIR_SRC)%.c
 				$(CC) -c $(CFLAGS) $(PATH_INC) $< -o $@
 			
 
-${NAME}:	${DIR_OBJ} ${DIR_OBJ}${DIR_MAND} ${DIR_OBJ}${DIR_BONUS} ${DIR_OBJ}${DIR_EXTRA} ${DIR_OBJ}${DIR_UTILS} ${OBJ_MAND} ${OBJ_BONUS} ${OBJ_EXTRA} ${OBJ_UTILS}
-			${AR} ${NAME} ${OBJ_MAND} ${OBJ_BONUS} ${OBJ_EXTRA} ${OBJ_UTILS}
+${NAME}:	${DIR_OBJ} ${DIR_OBJ}${DIR_MAND} ${DIR_OBJ}${DIR_EXTRA} ${OBJ_MAND} ${OBJ_EXTRA}
+			${AR} ${NAME} ${OBJ_MAND} ${OBJ_EXTRA}
 			ranlib ${NAME}
-
-#bonus:		all ${OBJS_BONUS}
-#			ar -r ${NAME} ${OBJS_BONUS}
-#			ranlib ${NAME}
 			
 clean:
 			rm -rf ${DIR_OBJ}
