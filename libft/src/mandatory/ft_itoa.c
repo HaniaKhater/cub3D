@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 19:41:29 by rchan--r          #+#    #+#             */
-/*   Updated: 2022/02/12 20:50:51 by rchan--r         ###   ########.fr       */
+/*   Created: 2021/12/08 03:46:39 by hkhater           #+#    #+#             */
+/*   Updated: 2021/12/10 04:58:35 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lenint(int n)
+static unsigned int	ft_count(int n)
 {
-	int	res;
+	unsigned int	count;
 
-	res = 1;
-	while (n / 10 != 0)
+	count = 0;
+	if (n <= 0)
+		count = 1;
+	while (n != 0)
 	{
-		res += 1;
 		n /= 10;
+		count++;
 	}
-	return (res);
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		l;
-	int		minus;
+	char			*p;
+	char			sign;
+	unsigned int	count;
 
-	l = ft_lenint(n);
-	minus = 0;
+	sign = '\0';
 	if (n < 0)
-		minus = 1;
-	res = malloc(sizeof(char) * (l + minus + 1));
-	if (res == NULL)
-		return (NULL);
-	if (minus)
+		sign = '-';
+	count = ft_count(n);
+	p = malloc(sizeof(char) * (count + 1));
+	if (!p)
+		return (0);
+	p[count] = '\0';
+	while (count)
 	{
-		res[0] = '-';
-		res++;
-	}
-	res[l--] = '\0';
-	while (l >= 0)
-	{
-		res[l--] = (1 - minus) * (n % 10) + minus * (-(n % 10)) + 48;
+		if (n < 0)
+			p[--count] = -(n % 10) + '0';
+		else
+			p[--count] = (n % 10) + '0';
 		n /= 10;
 	}
-	if (minus)
-		return (res - 1);
-	return (res);
+	if (sign)
+		p[count] = sign;
+	return (p);
 }

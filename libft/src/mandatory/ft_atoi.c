@@ -3,45 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 15:09:17 by rchan--r          #+#    #+#             */
-/*   Updated: 2022/02/05 17:50:08 by rchan--r         ###   ########.fr       */
+/*   Created: 2021/12/03 01:43:40 by hkhater           #+#    #+#             */
+/*   Updated: 2021/12/08 00:00:37 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isspace(int c)
+int	ft_atoi(const char *str)
 {
-	if ((c >= 9 && c <= 13) || c == ' ')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	res;
 	int	i;
-	int	minus;
+	int	sign;
+	int	nb;
 
-	res = 0;
 	i = 0;
-	minus = 0;
-	while (nptr[i] && ft_isspace(nptr[i]))
+	sign = 1;
+	nb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (nptr[i] == '-')
-			minus = 1;
+		if (str[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	while (nptr[i] && ft_isdigit(nptr[i]))
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		res = res * 10 + nptr[i] - 48;
+		nb = (nb * 10) + (str[i] - '0');
 		i++;
 	}
-	if (minus == 1)
-		return (-res);
-	return (res);
+	if (sign == -1)
+		nb *= -1;
+	return (nb);
 }

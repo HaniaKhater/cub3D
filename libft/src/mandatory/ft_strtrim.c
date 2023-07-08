@@ -3,39 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 14:01:03 by rchan--r          #+#    #+#             */
-/*   Updated: 2022/02/05 19:35:45 by rchan--r         ###   ########.fr       */
+/*   Created: 2021/12/08 03:29:20 by hkhater           #+#    #+#             */
+/*   Updated: 2021/12/11 00:07:02 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(const char *s1, const char *set)
+static char	*substr(char const *s, unsigned int start, size_t len)
+{
+	char	*p;
+
+	if (!s)
+		return (0);
+	if (start > (unsigned int)ft_strlen(s))
+		return (ft_calloc(1, sizeof(char)));
+	p = malloc(sizeof(char) * (len + 1));
+	if (!p)
+		return (0);
+	ft_memcpy(p, s + start, len);
+	p[len] = '\0';
+	return (p);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
-	size_t	j;
-	size_t	len1;
-	char	*res;
 
-	len1 = ft_strlen(s1);
-	i = 0;
-	while (s1[i] && ft_strchr(set, s1[i]) != NULL)
-		i++;
-	j = len1 - 1;
-	while (j != 0 && ft_strchr(set, s1[j]) != NULL)
-		j--;
-	if (j < i)
-	{
-		res = malloc(sizeof(char));
-		if (res != NULL)
-			res[0] = '\0';
-		return (res);
-	}
-	res = malloc(sizeof(char) * (j - i + 2));
-	if (res == NULL)
+	if (!s1 || !set)
 		return (NULL);
-	ft_strlcpy(res, s1 + i, j - i + 2);
-	return (res);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	i = ft_strlen(s1);
+	while (i && ft_strchr(set, s1[i]))
+		i--;
+	return (substr(s1, 0, i + 1));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 13:49:25 by rchan--r          #+#    #+#             */
-/*   Updated: 2022/02/05 19:10:41 by rchan--r         ###   ########.fr       */
+/*   Created: 2021/12/06 02:43:49 by hkhater           #+#    #+#             */
+/*   Updated: 2021/12/10 04:52:27 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,28 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
-	size_t	len1;
-	size_t	len2;
+	char		*s3;
+	int			i;
+	int			j;
 
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	res = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (res == NULL)
-		return (NULL);
-	ft_strlcpy(res, s1, len1 + 1);
-	ft_strlcpy(res + len1, s2, len2 + 1);
-	return (res);
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (0);
+	s3 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!s3)
+		return (0);
+	while (s1[i])
+	{
+		s3[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		s3[i] = s2[j];
+		i++;
+		j++;
+	}
+	s3[i] = '\0';
+	return (s3);
 }

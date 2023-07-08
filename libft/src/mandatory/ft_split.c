@@ -3,94 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rchan--r <rchan--r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkhater <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/05 14:52:07 by rchan--r          #+#    #+#             */
-/*   Updated: 2022/02/05 17:46:34 by rchan--r         ###   ########.fr       */
+/*   Created: 2021/12/08 03:35:25 by hkhater           #+#    #+#             */
+/*   Updated: 2021/12/12 03:14:03 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nbelements(char const *s, char c)
+static size_t	ft_count(char const *s, char const c)
 {
-	int	i;
-	int	res;
+	size_t	count;
+	size_t	i;
 
-	i = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	if (s[i] == '\0')
-		return (0);
-	res = 0;
-	while (s[i])
+	if (s[0])
 	{
-		res += 1;
-		while (s[i] && s[i] != c)
+		i = 1;
+		count = 0;
+		if (s[0] != c)
+			count = 1;
+		while (s[i])
+		{
+			if (s[i - 1] == c && s[i] != c)
+				count++;
 			i++;
-		while (s[i] && s[i] == c)
-			i++;
+		}
+		return (count);
 	}
-	return (res);
+	else
+		return (0);
 }
 
-const char	*ft_nextword(char const *s, char c)
+static size_t	ft_wordlen(char const *s, const char c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (s[i] == c)
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		return (s + i);
-	}
 	while (s[i] && s[i] != c)
 		i++;
-	return (s + i);
+	return (i);
 }
 
-int	ft_freetab(char **tab, int n)
+char	*ft_create_word(char const *s, size_t *i, char c)
 {
-	int	i;
+	char	*word;
+	size_t	k;
 
-	if (tab[n] != NULL)
-		return (0);
-	i = 0;
-	while (i < n)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (1);
+	k = 0;
+	word = (char *)malloc(sizeof(char) * (ft_wordlen(s + *i, c) + 1));
+	if (!word)
+		return (NULL);
+	while (s[*i] && s[*i] != c)
+		word[k++] = s[(*i)++];
+	word[k] = '\0';
+	return (word);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char		**res;
-	const char	*sp1;
-	int			nb_words;
-	int			i;
+	char	**sp;
+	size_t	i;
+	size_t	j;
 
-	nb_words = ft_nbelements(s, c);
-	res = (char **)malloc(sizeof(char *) * (nb_words + 1));
-	if (res == NULL)
-		return (NULL);
 	i = 0;
-	if (*s == c)
-		s = ft_nextword(s, c);
-	while (i < nb_words)
+	j = 0;
+	if (!s)
+		return (0);
+	sp = (char **)malloc(sizeof(char *) * (ft_count(s, c) + 1));
+	if (!sp)
+		return (0);
+	while (s[i])
 	{
-		sp1 = ft_nextword(s, c);
-		res[i] = ft_substr(s, 0, sp1 - s);
-		if (ft_freetab(res, i))
-			return (NULL);
-		s = sp1;
-		if (*s == c)
-			s = ft_nextword(s, c);
-		i++;
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i])
+		{
+			sp[j] = ft_create_word(s, &i, c);
+			if (!sp[j])
+				return (NULL);
+			j++;
+		}
 	}
-	res[nb_words] = NULL;
-	return (res);
+	sp[j] = 0;
+	return (sp);
 }
