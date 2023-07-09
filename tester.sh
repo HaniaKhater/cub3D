@@ -59,5 +59,5 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/no_players.cub
 echo -e "${RED}--> Not surrounded by walls${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/not_surrounded.cub
 
-# empty line in between map
-# space in walls
+echo -e "${GREEN}--> Egypt${RESET}"
+valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/Egypt.cub

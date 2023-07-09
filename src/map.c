@@ -6,7 +6,7 @@
 /*   By: hkhater <hkhater@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 18:14:21 by hania             #+#    #+#             */
-/*   Updated: 2023/07/09 00:19:47 by hkhater          ###   ########.fr       */
+/*   Updated: 2023/07/09 01:58:20 by hkhater          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static bool	only_map_char(char *s)
 	while (s && *s)
 	{
 		if (*s != '\n' && *s != '1' && *s != '0' && *s != 'N'
-			&& *s != 'E' && *s != 'S' && *s != 'W' && !is_space(*s)) // or just space
+			&& *s != 'E' && *s != 'S' && *s != 'W' && !is_space(*s))
 			return (false);
 		s++;
 	}
