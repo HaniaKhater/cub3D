@@ -34,8 +34,8 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/id_multiple.cub
 echo -e "${RED}--> A type identifier is not the first element of a line${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/id_not_first.cub
 
-echo -e "${GREEN}--> Has spaces befor type identifier${RESET}"
-valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/map.cub
+echo -e "${RED}--> A texture is not readable${RESET}"
+valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/nonvalid_texture.cub
 
 echo -e "${RED}--> Color has an extra comma${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/extra_comma.cub
@@ -43,7 +43,8 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/extra_comma.cub
 echo -e "${RED}--> Color has an rgb higher than 255${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/300rgb.cub
 
-# unreadable texture
+echo -e "${GREEN}--> Has spaces befor type identifier${RESET}"
+valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/map.cub
 
 echo -e "${PURPLE} ---------------------------------------------------------------${RESET}"
 echo -e "${PURPLE}                        TESTING MAP${RESET}"
@@ -61,7 +62,11 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/no_players.cub
 echo -e "${RED}--> Not surrounded by walls${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/not_surrounded.cub
 
+echo -e "${RED}--> has spaces in the middle of the map${RESET}"
+valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/spaced.cub
+
 echo -e "${GREEN}--> Egypt${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/Egypt.cub
 
-# invalid space in the middle of the map
+echo -e "${GREEN}--> Egypt${RESET}"
+./cub3D maps/Maze.cub
