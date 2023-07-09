@@ -43,6 +43,8 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/extra_comma.cub
 echo -e "${RED}--> Color has an rgb higher than 255${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/300rgb.cub
 
+# unreadable texture
+
 echo -e "${PURPLE} ---------------------------------------------------------------${RESET}"
 echo -e "${PURPLE}                        TESTING MAP${RESET}"
 echo -e "${PURPLE} ---------------------------------------------------------------\n${RESET}"
@@ -61,3 +63,5 @@ valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/not_surrounded.cub
 
 echo -e "${GREEN}--> Egypt${RESET}"
 valgrind --leak-check=full --show-leak-kinds=all ./cub3D maps/Egypt.cub
+
+# invalid space in the middle of the map
